@@ -52,12 +52,13 @@
 
       main3{
       width: 100%;
-      height: 25vh;
+      height: 50%;
       display: flex;
-      justify-content: center;
+      border-style: solid; border-width: thin;
+      /* justify-content: center;
       align-items: center;
-      text-align: center;
-      background-image: url("./bga.jpg");
+      text-align: center; */
+      /* background-image: url("./bga.jpg"); */
       }
 
       main4{
@@ -87,14 +88,21 @@
         height: 25%;
       }
 
+      main8{
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      }
+
     section h1 {
-      font-size: 500%;
+      font-size: 30px;
       font-weight: 700;
       text-transform: uppercase;
     }
 
     section h2 {
-      font-size: 30px;
+      font-size: 20px;
       text-transform: uppercase;
     }
 
@@ -168,7 +176,7 @@
     }
 
     input_data{
-      margin-bottom: 1%;
+      /* margin-bottom: 1%; */
       margin-top: 1%;
       margin-left: 1%;
       padding-left: 1%;
@@ -187,6 +195,7 @@
       width: 100%;
       height: 100%;
       display: flex;
+      /* background-image: url("./bga.jpg"); */
     }
 
     img{
@@ -232,6 +241,41 @@
     text-align: right;
     }
 
+
+    div.solid {border-style: solid; border-width: thin;}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  height: 100%;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px 16px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: 0.3s;
+  font-size: 10px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
     </style>
   </head>
 
@@ -239,106 +283,168 @@
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.6.1/d3.min.js" integrity="sha512-MefNfAGJ/pEy89xLOFs3V6pYPs6AmUhXJrRlydI/9wZuGrqxmrdQ80zKHUcyadAcph37teDZcBeS6oMJLPtTqw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <logo>
+    <logo >
       <img src="logotdm.png" style="margin-left: 5%; height: 65px;"/>
-      <img src="logovin_v1.png" style="margin-left: 65%; margin-right: 5%; height: 65px;"/>
-    </logo>
-
-    <main3>
+    <main8 style="margin: 1.5%;">
       <section>
         <h1>EDPOMP - Virtual Lab</h1>
         <h2>MÔ PHỎNG QUÁ TRÌNH IN 3D</h2>
       </section>
-    </main3>
+    </main8>
+      <img src="logovin_v1.png" style="margin-left: 5%; margin-right: 5%; height: 65px;"/>
+    </logo>
 
-    <main>
-      <main5>
-        <main>
-            <input_data style="width: 35%;">
-              <form class="form">
-                <section>
-                    <h3 style="justify-content: center; align-items: center; text-align: center; font-size: 15px;">Control Parametter</h3>
-                </section>
-                <br>
-                <label style="font-size: 10px;">Velocity (mm/s):</label>
-                <input type="number" id="velocity" min="10" max="1000" value="10" step="10">
-                <!-- <input type="range" style="width: 255px;" class="slider" id="velocityr" name="velocityr" min="1" max="1000" value="1"><br><br> -->
-                <br><br>
-                <label>Laser power (kW):</label>
-                <input type="number" id="lie" name="lie" min="0.97" max="1.03" value="0.97" step="0.01">
-                <!-- <input type="range" style="width: 245px;" class="slider" id="lier" name="lier" min="97" max="103" value="97"><br><br> -->
-                <br><br>
-                <label>Ambient temperature (K):</label>
-                <input type="number" id="at" name="at" min="285" max="312" value="285">
-                <!-- <input type="range" style="width: 216px;" class="slider" id="atr" name="atr" min="285" max="312" value="285"><br><br> -->
-                <br><br>
-                <label>Substrate preheating temperature (K):</label>
-                <input type="number" id="spt" name="spt" min="556" max="591" value="556">
-                <br>
-                <!-- <input type="range" style="width: 160px;" class="slider" id="sptr" name="sptr" min="556" max="591" value="556"><br><br> -->
-              </form>
-            </input_data>
-            <input_data style="width: 35%;">
-              <form class="form">
+    <main3>
+      <main5 style="width: 10%;">
+        <div class="tab" id="btnDed">
+          <button  onclick="openDed()">DED Simulated</button>
+        </div>
+        <div class="tab" id="btnA">
+          <button   >A Simulated</button>
+        </div>      
+        <div class="tab" id="btnB">
+          <button  >B Simulated</button>
+        </div>
+        <div class="tab" id="btnTutorial">
+          <button  onclick="openTutorial()">Tutorial</button>
+        </div>
+      </main5>
+
+      <main id="DED" style="width: 80%;">
+        <input_data style="width: 35%;">
+          <form class="form">
+            <section>
+                <h3 style="justify-content: center; align-items: center; text-align: center; font-size: 15px;">Control Parametter</h3>
+            </section>
+            <br>
+            <label style="font-size: 10px;">Velocity (mm/s):</label>
+            <input type="number" id="velocity" min="10" max="1000" value="10" step="10">
+            <!-- <input type="range" style="width: 255px;" class="slider" id="velocityr" name="velocityr" min="1" max="1000" value="1"><br><br> -->
+            <br><br>
+            <label>Laser power (kW):</label>
+            <input type="number" id="lie" name="lie" min="0.97" max="1.03" value="0.97" step="0.01">
+            <!-- <input type="range" style="width: 245px;" class="slider" id="lier" name="lier" min="97" max="103" value="97"><br><br> -->
+            <br><br>
+            <label>Ambient temperature (K):</label>
+            <input type="number" id="at" name="at" min="285" max="312" value="285">
+            <!-- <input type="range" style="width: 216px;" class="slider" id="atr" name="atr" min="285" max="312" value="285"><br><br> -->
+            <br><br>
+            <label>Substrate preheating temperature (K):</label>
+            <input type="number" id="spt" name="spt" min="556" max="591" value="556">
+            <br>
+            <!-- <input type="range" style="width: 160px;" class="slider" id="sptr" name="sptr" min="556" max="591" value="556"><br><br> -->
+          </form>
+        </input_data>
+        <input_data style="width: 35%;">
+          <form class="form">
+            <section>
+                <h3 style="justify-content: center; align-items: center; text-align: center; font-size: 15px; padding-left: 20px;">Control Parametter</h3>
+            </section>
+            <br>
+            <label>Length (mm):</label>
+            <input type="number" id="input_x" name="input_x" min="1" max="15" value="1">
+            <!-- <input type="range" style="width: 275px;" class="slider" name="input_x1" id="input_x1" min="1" max="5" value="1"><br><br> -->
+            <br><br>
+            <label>Width (mm):</label>
+            <input type="number" id="input_y" name="input_y" min="1" max="10" value="1">
+            <!-- <input type="range" style="width: 280px;" class="slider"  name="input_y1" id="input_y1" min="1" max="5" value="1"><br><br> -->
+            <br><br>
+            <label style="padding-left: 0px;">Depth (mm):</label>
+            <input type="number" id="input_z"  name="input_z" min="1" max="5" value="1">
+            <!-- <input type="range" style="width: 280px;" class="slider"  name="input_z1" id="input_z1" min="1" max="5" value="1"><br><br> -->
+            <br>
+          </form>
+        </input_data>
+        <input_data style="width: 35%;">
+            <form class="form">
                 <section>
                     <h3 style="justify-content: center; align-items: center; text-align: center; font-size: 15px; padding-left: 20px;">Control Parametter</h3>
                 </section>
-                <br>
-                <label>Length (mm):</label>
-                <input type="number" id="input_x" name="input_x" min="1" max="15" value="1">
-                <!-- <input type="range" style="width: 275px;" class="slider" name="input_x1" id="input_x1" min="1" max="5" value="1"><br><br> -->
-                <br><br>
-                <label>Width (mm):</label>
-                <input type="number" id="input_y" name="input_y" min="1" max="10" value="1">
-                <!-- <input type="range" style="width: 280px;" class="slider"  name="input_y1" id="input_y1" min="1" max="5" value="1"><br><br> -->
-                <br><br>
-                <label style="padding-left: 0px;">Depth (mm):</label>
-                <input type="number" id="input_z"  name="input_z" min="1" max="5" value="1">
-                <!-- <input type="range" style="width: 280px;" class="slider"  name="input_z1" id="input_z1" min="1" max="5" value="1"><br><br> -->
-                <br>
-              </form>
-            </input_data>
-            <input_data style="width: 35%;">
-                <form class="form">
-                    <section>
-                        <h3 style="justify-content: center; align-items: center; text-align: center; font-size: 15px; padding-left: 20px;">Control Parametter</h3>
-                    </section>
-                  <br> 
-                  <label>Point:</label>
-                  <select id="point">
-                    <option value="N">N</option>
-                    <option value="1">Clab 1</option>
-                    <option value="2">Clab 2</option>
-                    <option value="3">Clab 3</option>
-                    <option value="4">Clab 4</option>
-                    <option value="5">Clab 5</option>
-                  </select>
-                  <br><br>
-                  <label>Melt:</label>
-                  <select id="melt">
-                    <option value="1">Witdh</option>
-                    <option value="2">Depth</option>
-                    <option value="3">Area</option>
-                  </select>
-                  <br>
-                </form>
-              </input_data>
-            <br>
-          </main>
+              <br> 
+              <label>Point:</label>
+              <select id="point">
+                <option value="N">N</option>
+                <option value="1">Clab 1</option>
+                <option value="2">Clab 2</option>
+                <option value="3">Clab 3</option>
+                <option value="4">Clab 4</option>
+                <option value="5">Clab 5</option>
+              </select>
+              <br><br>
+              <label>Melt:</label>
+              <select id="melt">
+                <option value="1">Witdh</option>
+                <option value="2">Depth</option>
+                <option value="3">Area</option>
+              </select>
+              <br>
+            </form>
+          </input_data>
+        <br>
+      </main>
 
-          <div3>
-            <button class="button" id="Run" style="margin-left: 30%;">Run</button>
-          </div3>
-          <div3>
-            <button class="button" id="Reset" >Reset</button>
-          </div3>
-          <div3>
-            <button class="button"  id="btn-print">Print Report</button>
-          </div3>
-          <br> <br>
+      <main5 id="btncontrol" style="width: 10%;">
+        <br>
+        <br>
+        <div3>
+          <button class="button" id="Run">Run</button>
+        </div3>
+        <br>
+        <br>
+        <div3>
+          <button class="button" id="Reset" >Reset</button>
+        </div3>
+        <br>
+        <br>
+        <div3>
+          <button class="button"  id="btn-print">Print Report</button>
+        </div3>
+      </main5>
 
+      <main id="Tutorial">
+        <main5>
+          <section>
+          <br>
+          <h4><b>Bước 1:  </b>   Thiết lập thông số máy in.</h4>
+          <br>
+          <h4><b>Bước 2:  </b>   Thiết lập kích thước mẫu in</h4>
+          <br>
+          <h4><b>Bước 3:  </b>  Chọn biểu đồ hiển thị </h4>
+          <br>
+          <h4><b>Bước 4:  </b>   Bấm run để chạy mô phỏng</h4>
+          <br>
+          <h4><b>Bước 5:  </b>   Bấm Print Report để xuất báo cáo</h4>
+          <br>        
+          </section>
+        </main5>
+
+        <main5 >
+          <section>
+          <br>
+          <h4 style="margin-left: 1%;"> Lưu ý: Vận tốc = [10, 1000] mm/s. <br><br> </h4>
+          <h4 style="margin-left: 10%;"> Laser power = [0.97, 1.03] kW. </h4><br>
+          <h4 style="margin-left: 10%;"> Ambient temperature = [285, 312] K. </h4><br>
+          <h4 style="margin-left: 10%;"> Substrate preheating temperature = [556, 591] K. </h4>
+          <br>
+          </section>
+        </main5>
+
+        <main5>
+          <section>
+          <br>
+          <h4 style="margin-left: 1%;"> Lưu ý: Chiều dài của đối tượng in = [1, 15] mm. <br><br> </h4>
+          <h4 style="margin-left: 10%;"> Chiều rộng của đối tượng in = [1, 10] mm. </h4><br>
+          <h4 style="margin-left: 10%;"> Chiều cao của đối tượng in = [1, 5] mm. </h4><br>
+          </section>
+        </main5>
+
+      </main>
+    </main3>
+
+    <main style="height: 50%; margin-bottom: 0%;">
+      <main5>
         <div1 id="unity-container" class="unity-desktop">
-          <canvas id="unity-canvas" width= 100% height= 60%></canvas>
+          <canvas id="unity-canvas" width= 100% height= 80%></canvas>
           <div id="unity-loading-bar">
             <div id="unity-progress-bar-empty">
               <div id="unity-progress-bar-full"></div>
@@ -352,78 +458,46 @@
         </div1>
       </main5>
 
-        <main6>
-          <div id="myPlot" style="height: 50%;"></div>
-          <div id="myPlot1" style="height: 50%;"></div>
-          <!-- <div id="myPlot1" style="max-height: 230px;"></div> -->
-          <!-- <div id="myPlot2" style="max-height: 230px;"></div> -->
-        </main6>
-
+      <main6 >
+        <div class="solid" id="myPlot" style="height: 48.5%; margin-left: 1%; margin-top: 1%; margin-right: 1%;"></div>
+        <div class="solid" id="myPlot1" style="height: 48.5%; margin-left: 1%; margin-top: 1%; margin-right: 1%;"></div>
+      </main6>
     </main>
 
-    <main1>
-      <nav2>
-        <section>
-          <h2> Tutorial </h2>
-        </section>
-      </nav2>
-    </main1>
 
-    <main4>
-      <main style="width: 50%;">
-      <section>
-        <br>
-        <!-- <h2> Tutorial </h2> -->
-        <h2>Thiết lập thông số mô phỏng</h2>
-        <br>
-        <h4><b>Bước 1:  </b>   Thiết lập thông số máy in.</h4>
-        <br>
-        <h4><b>Bước 2:  </b>   Thiết lập kích thước mẫu in</h4>
-        <br>
-        <h4><b>Bước 3:  </b>  Chọn biểu đồ hiển thị </h4>
-        <br>
-        <h4><b>Bước 4:  </b>   Bấm run để chạy mô phỏng</h4>
-        <br>
-        <h4><b>Bước 5:  </b>   Bấm Print Report để xuất báo cáo</h4>
-        <br>        
-        <h4><b>Lưu ý:  </b> Vân tốc = [10, 1000] mm/s. <br><br> </h4>
-        <h4 style="margin-left: 17%;"> Laser power = [0.97, 1.03] kW. </h4><br>
-        <h4 style="margin-left: 17%;"> Ambient temperature = [285, 312] K. </h4><br>
-        <h4 style="margin-left: 17%;"> Substrate preheating temperature = [556, 591] K. </h4>
-        <br>
-        <h2>Điều khiển mô hình mô phỏng</h2>
-        <br>
-        <h4><b>Bước 1:  </b> Dùng chuột trái để xoay mô hình</h4><br>
-        <h4><b>Bước 2:  </b> Dùng lăn chuột để phóng to và thu nhỏ mô hình</h4><br>
-        <h4><b>Bước 3:  </b> Nút Home để mô hình quay về vị trí ban đầu</h4><br>
-        <h4><b>Bước 4:  </b> Nút Reset để chạy lại mô phỏng</h4><br>
-        <h4><b>Lưu ý:  </b> Chiều dài của đối tượng in = [1, 15] mm. <br><br> </h4>
-        <h4 style="margin-left: 17%;"> Chiều rộng của đối tượng in = [1, 1] mm. </h4><br>
-        <h4 style="margin-left: 17%;"> Chiều cao của đối tượng in = [1, 5] mm. </h4><br>
-        <br>
-      </section>
-      </main>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/bH9NEn1JxPc"></iframe>     
-      </main4>
-
-    <iframe id="frame" style="width: 100%; border: 0; height: 0" src="report_v5.html"></iframe>
-
-  <main2>
-    <nav1>
-      <div class="fooder"> 
-        <a >Giới thiệu</a>
-        <a >Chính sách</a>
-        <a >Tin tức</a>
-        <a >Liên hệ</a>
-        <a >Hướng dẫn</a>
-      </div>
-    </nav1>
-  </main2>
+  <iframe id="frame" style="width: 100%; border: 0; height: 0" src="report_v5.html"></iframe>
 
   <script src="./config.js"></script>
   <script src="./script1.js"></script>
   <script src="./script_plot_v7.js"></script>
   <script src="./custom.js"></script>
+  <script>
+    document.getElementById("Tutorial").style.display = "none";
+    document.getElementById("DED").style.display = "flex";
+    document.getElementById("btnTutorial").style.backgroundColor = "#ccc";
+    document.getElementById("btnDed").style.backgroundColor = "#ffffff";
+    document.getElementById("btnA").style.backgroundColor = "#ccc";
+    document.getElementById("btnB").style.backgroundColor = "#ccc"; 
+    document.getElementById("DED").style.display = "flex";
 
+    function openDed(){
+    document.getElementById("Tutorial").style.display = "none";
+    document.getElementById("DED").style.display = "flex";
+    document.getElementById("btncontrol").style.display = "inline";
+    document.getElementById("btnTutorial").style.backgroundColor = "#ccc";
+    document.getElementById("btnDed").style.backgroundColor = "#ffffff";
+    document.getElementById("btnA").style.backgroundColor = "#ccc";
+    document.getElementById("btnB").style.backgroundColor = "#ccc"; 
+    }  
+    function openTutorial(){
+    document.getElementById("Tutorial").style.display = "flex";
+    document.getElementById("DED").style.display = "none";
+    document.getElementById("btncontrol").style.display = "none";
+    document.getElementById("btnTutorial").style.backgroundColor = "#ffffff";
+    document.getElementById("btnDed").style.backgroundColor = "#ccc";
+    document.getElementById("btnA").style.backgroundColor = "#ccc";
+    document.getElementById("btnB").style.backgroundColor = "#ccc"; 
+    }  
+  </script>
   </body>
 </html>

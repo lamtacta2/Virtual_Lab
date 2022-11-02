@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" integrity="sha512-r22gChDnGvBylk90+2e/ycr3RVrDi8DIOkIGNhJlKfuyQM4tIRAI062MaV8sfjQKYVGjOBaZBOA87z+IhZE9DA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title> Demo </title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        font-size: 10px;
+        font-weight: 100;
+      }
+
+    header {
+    background-color:rgb(255, 255, 255);
+    color:white;
+    text-align:center;
+    padding: 1%;	
+    }
+
+    nav {
+    background-color:#eeeeee;
+    height:100%;
+    width: 60%;
+    float:left;
+    padding: 5px;	
+    display: flex;      
+    }
+
+    /* section {
+    width:350px;
+    float:left;
+    padding:10px;	 	 
+    } */
+
+    footer {
+    background-color:black;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px;	 }
+
+    section h1 {
+      font-size: 500%;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    section h2 {
+      font-size: 30px;
+      text-transform: uppercase;
+    }
+
+    section h3 {
+      font-size: 15px;
+      text-transform: none;
+    }
+
+    a{
+      text-align: center;
+      display: inline;
+      justify-content: space-around;
+      color: #fff;
+      margin: 20px 0px 20px 0px;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    section h1 {
+      font-size: 500%;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    section h2 {
+      font-size: 30px;
+      text-transform: uppercase;
+    }
+
+    section i{
+      font-size: 15px;
+    }
+
+    section h6 {
+      font-size: 15px;
+      text-transform: none;
+    }
+
+    section h3 {
+      font-size: 15px;
+      text-transform: uppercase;
+    }
+
+    section h4 {
+      font-size: 10px;
+      text-align: left;
+      margin-left: 10%;
+    }
+
+    </style>
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.6.1/d3.min.js" integrity="sha512-MefNfAGJ/pEy89xLOFs3V6pYPs6AmUhXJrRlydI/9wZuGrqxmrdQ80zKHUcyadAcph37teDZcBeS6oMJLPtTqw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <header>
+        <img src="logotdm.png" style="height: 65px;"/>
+        <img src="logovin_v1.png" style="padding-left: 50%; height: 65px;"/>
+    </header>
+
+    <header style="color: #000000; background-image: url('bga.jpg');">
+          <section> <h1> EDPOMP - Virtual Lab </h1><br></section>
+          <section> <h2> MÔ PHỎNG QUÁ TRÌNH IN 3D </h2></section>
+    </header>
+    
+    <nav style="justify-content: center; align-items: center; text-align: center;">
+        <input_data >
+            <form class="form">
+              <section>
+                  <h3 style="justify-content: center; align-items: center; text-align: center; font-size: 10px;">Control Parametter</h3>
+              </section>
+
+              <label style="font-size: 10px;">Velocity (mm/s):</label>
+              <input type="number" id="velocity" name="velocity" min="1" max="1000" value="1">
+              <!-- <input type="range" style="width: 10px;" class="slider" id="velocityr" name="velocityr" min="1" max="1000" value="1"> -->
+              <br>
+              <label style="font-size: 10px;">Laser power (kW):</label>
+              <input type="number" id="lie" name="lie" min="0.97" max="1.03" value="0.97">
+              <!-- <input type="range" style="width: 10px;" class="slider" id="lier" name="lier" min="97" max="103" value="97"> -->
+              <br>
+              <label style="font-size: 10px;">Ambient temperature (K):</label>
+              <input type="number" id="at" name="at" min="285" max="312" value="285">
+              <!-- <input type="range" style="width: 10px;" class="slider" id="atr" name="atr" min="285" max="312" value="285"> -->
+              <br>
+              <label style="font-size: 10px;">Substrate preheating temperature (K):</label>
+              <input type="number" id="spt" name="spt" min="556" max="591" value="556">
+              <!-- <input type="range" style="width: 10px;" class="slider" id="sptr" name="sptr" min="556" max="591" value="556"> -->
+            </form>
+          </input_data>
+
+          <input_data style="margin-left: 10px;">
+            <form class="form">
+              <section>
+                  <h3 style="justify-content: center; align-items: center; text-align: center; font-size: 10px;">Parametter Object</h3>
+              </section>
+              <br>
+              <label style="font-size: 10px;">Length (mm):</label>
+              <input type="number" id="input_x" name="input_x" min="0.1" max="0.5" value="0.1">
+              <!-- <input type="range" style="width: 10px;" class="slider" name="input_x1" id="input_x1" min="1" max="5" value="1"><br><br> -->
+              <br>
+              <label style="font-size: 10px;">Width (mm):</label>
+              <input type="number" id="input_y" name="input_y" min="0.1" max="0.5" value="0.1">
+              <!-- <input type="range" style="width: 10px;" class="slider"  name="input_y1" id="input_y1" min="1" max="5" value="1"><br><br> -->
+              <br>
+              <label style="padding-left: 0px;">Depth (mm):</label>
+              <input type="number" id="input_z"  name="input_z" min="0.1" max="0.5" value="0.1">
+              <!-- <input type="range" style="width: 10px;" class="slider"  name="input_z1" id="input_z1" min="1" max="5" value="1"><br><br> -->
+              <br>
+            </form>
+          </input_data>
+
+          <input_data style="margin-left: 10px;">
+            <form class="form">
+              <section>
+                  <h3 style="justify-content: center; align-items: center; text-align: center; font-size: 10px;">Setup Point</h3>
+              </section>
+              <br>
+              <label style="font-size: 10px;">Length (mm):</label>
+              <input type="number" id="input_x" name="input_x" min="0.1" max="0.5" value="0.1">
+              <!-- <input type="range" style="width: 10px;" class="slider" name="input_x1" id="input_x1" min="1" max="5" value="1"><br><br> -->
+              <br>
+              <label style="font-size: 10px;">Width (mm):</label>
+              <input type="number" id="input_y" name="input_y" min="0.1" max="0.5" value="0.1">
+              <!-- <input type="range" style="width: 10px;" class="slider"  name="input_y1" id="input_y1" min="1" max="5" value="1"><br><br> -->
+              <br>
+              <label style="padding-left: 0px;">Depth (mm):</label>
+              <input type="number" id="input_z"  name="input_z" min="0.1" max="0.5" value="0.1">
+              <br>
+              <!-- <input type="range" style="width: 10px;" class="slider"  name="input_z1" id="input_z1" min="1" max="5" value="1"><br><br> -->
+            </form>
+          </input_data>
+    </nav>
+    <nav>
+        <div3>
+            <button class="button" id="Run" style="margin-left: 15%;">Run</button>
+          </div3>
+  
+          <div3>
+            <button class="button" id="Reset" >Reset</button>
+          </div3>
+  
+          <div3>
+            <button class="button"  id="btn-print">Print Report</button>
+          </div3>
+    </nav>
+    <nav>
+        <div1 id="unity-container" class="unity-desktop">
+            <canvas id="unity-canvas" width=100% height=100%></canvas>
+            <div id="unity-loading-bar">
+              <div id="unity-progress-bar-empty">
+                <div id="unity-progress-bar-full"></div>
+              </div>
+            </div>
+            <div id="unity-warning"> </div>
+            <div id="unity-footer">
+              <div id="unity-webgl-logo"></div>
+              <div id="unity-fullscreen-button"></div>
+            </div>
+          </div1>
+    </nav>
+    <section>
+    <h1>London</h1>
+    <p>London is the capital city of England. It is the most populous city in the United Kingdom,
+    with a metropolitan area of over 13 million inhabitants.</p>
+    <p>Standing on the River Thames, London has been a major settlement for two millennia,
+    its history going back to its founding by the Romans, who named it Londinium.</p>
+    </section>
+    
+    <footer>
+        <a >Giới thiệu</a>
+        <a >Chính sách</a>
+        <a >Tin tức</a>
+        <a >Liên hệ</a>
+        <a >Hướng dẫn</a>
+    </footer>
+    
+
+    <script src="./config.js"></script>
+    <script src="./script1.js"></script>
+</body>
+</html>

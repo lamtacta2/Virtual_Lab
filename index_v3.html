@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" integrity="sha512-r22gChDnGvBylk90+2e/ycr3RVrDi8DIOkIGNhJlKfuyQM4tIRAI062MaV8sfjQKYVGjOBaZBOA87z+IhZE9DA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title> Demo </title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        font-size: 10px;
+        font-weight: 100;
+      }
+
+      .chartMenu {
+        width: auto;
+        height: auto;
+        background: #1A1A1A;
+        color: rgb(240, 240, 240);
+      }
+
+      .chartMenu p {
+        padding: 10px;
+        font-size: 20px;
+      }
+
+      main{
+        width: 100%;
+        height: 100%;
+        display: flex;
+      }
+
+      main1{
+        width: 100%;
+        height: 100%;
+      }
+
+      main2{
+        width: 100%;
+        height: 100%;
+        margin-left: 1px;
+      }
+
+      main3{
+      width: 100%;
+      height: 25vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background-image: url("./bga.jpg");
+      }
+
+      main4{
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      }
+
+      main5{
+        width: 65%;
+        height: 100%;
+      }
+
+      main6{
+        width: 35%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+
+      main7{
+        width: 50%;
+        height: 25%;
+      }
+
+    section h1 {
+      font-size: 500%;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    section h2 {
+      font-size: 30px;
+      text-transform: uppercase;
+    }
+
+    section i{
+      font-size: 15px;
+    }
+
+    section h6 {
+      font-size: 15px;
+      text-transform: none;
+    }
+
+    section h3 {
+      font-size: 15px;
+      text-transform: uppercase;
+    }
+
+    section h4 {
+      font-size: 10px;
+      text-align: left;
+      margin-left: 10%;
+    }
+
+    a{
+      text-align: center;
+      display: flex;
+      justify-content: space-around;
+      color: #fff;
+      margin: 20px 0px 20px 0px;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    div2 {
+        margin-left: 40px;
+        display: flex;
+        text-align: center;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: xx-large;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: rgb(255, 5, 5);
+        background-color: rgb(255, 255, 255);}
+    
+    div3 {
+        margin: 10px;
+        padding: 2px;
+        text-align: center;
+        color: rgb(255, 5, 5);
+        background-color: rgb(255, 255, 255);
+        }
+
+    div4 {
+        margin-left: 10px;
+        display: flex;
+        text-align: center;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: xx-large;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: rgb(255, 5, 5);
+        background-color: rgb(255, 255, 255);}
+
+    button{
+      width: 85px;
+      height: auto;
+      font-size: 10px;
+      padding: 3px;
+    }
+
+    input_data{
+      margin-bottom: 1%;
+      margin-top: 1%;
+      margin-left: 1%;
+      padding-left: 1%;
+      padding-top: 1%;
+      padding-bottom: 1%;
+      color: rgb(0, 0, 0);
+      border-width: thin;
+      border-color: black;
+      border-style: solid;
+      border: 2px solid rgba(132, 117, 117, 0.25);
+      border-radius: 5px; 
+      display: flex;
+    }
+
+    logo{
+      width: 100%;
+      height: 100%;
+      display: flex;
+    }
+
+    img{
+      width: 10%;
+      height: 10%;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      margin: 10px;
+    }
+
+    nav1 {
+      width: 100%;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: #055083;
+    }
+
+    nav1 .fooder {
+      text-align: center;
+      display: flex;
+      justify-content: space-around;
+      font-size: x-large;
+    }
+
+    nav2 {
+      width: 100%;
+      height: 50px;
+      font-size: xx-large;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: #4893c5;
+    }
+
+
+  .slider {
+    justify-content: right;
+    align-items: right;
+    text-align: right;
+    }
+
+    /* .slider:hover {
+    opacity: 1;
+    } */
+
+    </style>
+  </head>
+
+  <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.6.1/d3.min.js" integrity="sha512-MefNfAGJ/pEy89xLOFs3V6pYPs6AmUhXJrRlydI/9wZuGrqxmrdQ80zKHUcyadAcph37teDZcBeS6oMJLPtTqw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <logo>
+      <img src="logotdm.png" style="margin-left: 5%; height: 65px;"/>
+      <img src="logovin_v1.png" style="margin-left: 65%; margin-right: 5%; height: 65px;"/>
+    </logo>
+
+    <main3>
+      <section>
+        <h1>EDPOMP - Virtual Lab</h1>
+        <h2>MÔ PHỎNG QUÁ TRÌNH IN 3D</h2>
+      </section>
+    </main3>
+
+    <main>
+      <main5>
+        <div1 id="unity-container" class="unity-desktop">
+          <canvas id="unity-canvas" width=100% height=100%></canvas>
+          <div id="unity-loading-bar">
+            <div id="unity-progress-bar-empty">
+              <div id="unity-progress-bar-full"></div>
+            </div>
+          </div>
+          <div id="unity-warning"> </div>
+          <div id="unity-footer">
+            <div id="unity-webgl-logo"></div>
+            <div id="unity-fullscreen-button"></div>
+          </div>
+        </div1>
+      </main5>
+
+      <main6>
+        <input_data>
+          <form class="form">
+            <section>
+                <h3 style="justify-content: center; align-items: center; text-align: center;">Control Parametter</h3>
+            </section>
+            <br>
+            <label>Velocity (mm/s):</label>
+            <input type="number" id="velocity" name="velocity" min="1" max="1000" value="1">
+            <input type="range" style="width: 255px;" class="slider" id="velocityr" name="velocityr" min="1" max="1000" value="1"><br><br>
+            
+            <label>Laser power (kW):</label>
+            <input type="number" id="lie" name="lie" min="0.97" max="1.03" value="0.97">
+            <input type="range" style="width: 245px;" class="slider" id="lier" name="lier" min="97" max="103" value="97"><br><br>
+
+            <label>Ambient temperature (K):</label>
+            <input type="number" id="at" name="at" min="285" max="312" value="285">
+            <input type="range" style="width: 216px;" class="slider" id="atr" name="atr" min="285" max="312" value="285"><br><br>
+
+            <label>Substrate preheating temperature (K):</label>
+            <input type="number" id="spt" name="spt" min="556" max="591" value="556">
+            <input type="range" style="width: 160px;" class="slider" id="sptr" name="sptr" min="556" max="591" value="556"><br><br>
+          </form>
+        </input_data>
+        <input_data>
+          <form class="form">
+            <section>
+                <h3 style="justify-content: center; align-items: center; text-align: center;">Parametter Object</h3>
+            </section>
+            <br>
+            <label>Length (mm):</label>
+            <input type="number" id="input_x" name="input_x" min="0.1" max="0.5" value="0.1">
+            <input type="range" style="width: 275px;" class="slider" name="input_x1" id="input_x1" min="1" max="5" value="1"><br><br>
+            
+            <label>Width (mm):</label>
+            <input type="number" id="input_y" name="input_y" min="0.1" max="0.5" value="0.1">
+            <input type="range" style="width: 280px;" class="slider"  name="input_y1" id="input_y1" min="1" max="5" value="1"><br><br>
+
+            <label style="padding-left: 0px;">Depth (mm):</label>
+            <input type="number" id="input_z"  name="input_z" min="0.1" max="0.5" value="0.1">
+            <input type="range" style="width: 280px;" class="slider"  name="input_z1" id="input_z1" min="1" max="5" value="1"><br><br>
+            
+            <label>Tốc độ cấp bột(g/min):</label>
+            <input type="number" id="input_x" name="input_x" min="0.1" max="0.5" value="0.1">
+            <input type="range" style="width: 240px;" class="slider" name="input_x1" id="input_x1" min="1" max="5" value="1"><br><br>
+            
+            <label>Lưu lượng cấp khí (l/min):</label>
+            <input type="number" id="input_y" name="input_y" min="0.1" max="0.5" value="0.1">
+            <input type="range" style="width: 220px;" class="slider"  name="input_y1" id="input_y1" min="1" max="5" value="1"><br><br>
+
+          </form>
+        </input_data>
+        <br>
+        <div3>
+          <button class="button" id="Run" style="margin-left: 15%;">Run</button>
+        </div3>
+
+        <div3>
+          <button class="button" id="Reset" >Reset</button>
+        </div3>
+
+        <div3>
+          <button class="button"  id="btn-print">Print Report</button>
+        </div3>
+        <br><br><br>
+      <main4>
+        <section>
+          <br>
+          <h2> Tutorial </h2>
+          <h3> EDPOMP - Virtual lab</h3>
+          <br>
+          <h4><b>Bước 1:  </b>   Thiết lập thông số in</h4>
+          <br>
+          <h4><b>Bước 2:  </b>   Chọn Melt Prediction hoặc Point Prediction</h4>
+          <br>
+          <h4><b>Bước 3:  </b>   Chọn Print Report để lưu file báo cáo nếu cần </h4>
+          <br>
+          <h4><b>Bước 4:  </b>   Chọn reset để thiết lập lại thông số in</h4>
+          <br>
+          <img src="c.png"  style="width: 80%; height: 100%; padding: auto;" />
+        </section>
+      </main4>
+      </main2>
+
+    </main>
+  
+  <main1>
+    <nav2>
+      <section>
+        <h2> Results </h2>
+      </section>
+    </nav2>
+  </main1>
+
+  <!-- <section style="margin-left: 5%; margin-top: 2%;"> <h1 style="font-size: 30px;" >Problem description</h1></section>
+  <section style="margin-left: 10%; margin-top: 2%;"> <h3> Problem description</h3></section>
+
+  <section style="margin-left: 5%; margin-top: 2%;"> <h1 style="font-size: 30px;" >Numerical results</h1></section>
+  <section style="margin-left: 10%; margin-top: 2%;"> <h3>Problem description</h3></section> -->
+
+  <section style="margin-left: 10%; margin-top: 2%;"> <h1 style="font-size: 25px;" >Temperature fields and melting pool size</h1></section>
+  <!-- <section style="margin-left: 10%; margin-top: 2%;"> <h3>Temperature fields and melting pool size</h3></section> -->
+
+    <main>
+      <main7>
+        <section style="margin-left: 40%; margin-top: 2%;"> <h3> Temperature fields </h3></section>
+        <img src="a.png" style="width: 50%; justify-content: center; align-items: center; text-align: center; margin-left: 30%;"/> 
+      </main7>
+      <main7>
+        <section style="margin-left: 15%; margin-top: 2%;"> <h3> Melting pool depths </h3></section>
+        <img src="b.png" style="width: 50%; justify-content: center; align-items: center; text-align: center; margin-left: 5%;"/> 
+      </main7>
+    </main>
+
+  <section style="margin-left: 10%; margin-top: 2%;"> <h1 style="font-size: 25px;" >Temperature evolutions at five important points</h1></section>
+  <!-- <section style="margin-left: 10%; margin-top: 2%;"> <h3>Temperature evolutions at five important points</h3></section> -->
+  
+  <main2>
+    <main7>
+        <img src="2.jpg" style="width: 50%; justify-content: center; align-items: center; text-align: center; margin-left: 25%;"/> 
+    </main7>
+  </main2>
+
+  <!-- <section style="margin-left: 10%; margin-top: 2%;"> <h3>Temperature evolutions at five important points</h3></section> -->
+
+    <main>
+      <main7>
+        <div id="myPlot3" style="max-height: 300px;"></div>
+      </main7>
+      <main7>
+        <div id="myPlot4" style="max-height: 300px;"></div>
+      </main7>
+      <main7>
+        <div id="myPlot5" style="max-height: 300px;"></div>
+      </main7>
+    </main>
+
+    <main>
+      <main7>
+        <div id="myPlot6" style="max-height: 300px;"></div>
+      </main7>
+      <main7>
+        <div id="myPlot7" style="max-height: 300px;"></div>
+      </main7>
+      <main7>
+        <div id="myPlot8" style="max-height: 300px;"></div>
+      </main7>
+    </main>
+
+    <section style="margin-top: 2%; text-align: center;"> <h6> Fig. 3. The temporospatial temperature field evaluated at six selected points.</h6></section>
+                  
+
+    <section style="margin-left: 10%; margin-top: 2%;"> <h1 style="font-size: 25px;" >Melting pool sizes evolutions</h1></section>
+    <!-- <section style="margin-left: 10%; margin-top: 2%;"> <h3>Melting pool sizes evolutions</h3></section> -->
+  
+    <main>
+      <main7>
+        <div id="myPlot9" style="max-height: 300px;"></div>
+      </main7>
+      <main7>
+        <div id="myPlot10" style="max-height: 300px;"></div>
+      </main7>
+      <main7>
+        <div id="myPlot11" style="max-height: 300px;"></div>
+      </main7>
+    </main>
+
+      <section style="margin-top: 2%; text-align: center;"> <h6> Fig. 4. The melting pool sizes including its  width, depth and area.</h6></section>
+      <section style="margin-left: 10%; margin-top: 2%;"> <h1 style="font-size: 25px;" >References</h1></section>
+      <section style="margin-left: 5%; margin-top: 2%; width: 90%; text-align: justify;"> <h6>[1] Quy Duc Pham, T., Vinh Hoang, T., Tuan Pham, Q., Phuc Huynh, T., Van Tran, X., El Fetni, S., Duchêne, L., Tran, H.S., & Habraken, A. (2021, April). Data-driven prediction of temperature evolution in metallic additive manufacturing process. In <i>24th International Conference on Material Forming.</i> PoPuPs, Liege, Belgium.</h6></section>
+      <section style="margin-left: 5%; margin-top: 2%; width: 90%; text-align: justify;"> <h6>[2] Pham, T. Q. D., Hoang, T. V., Van Tran, X., Pham, Q. T., Fetni, S., Duchêne, L., Tran, H. S & Habraken, A. M. (2022). Fast and accurate prediction of temperature evolutions in additive manufacturing process using deep learning. <i> Journal of Intelligent Manufacturing, </i> 1-19.</h6></section>
+      <section style="margin-left: 5%; margin-top: 2%; width: 90%; text-align: justify;"> <h6>[3] Pham, T. Q. D., Hoang, T. V., Tran, X. V., Fetni, S., Duchêne, L., Tran, H. S., & Habraken, A. M. (2022). Characterization, propagation, and sensitivity analysis of uncertainties in the directed energy deposition process using a deep learning-based surrogate model. <i>Probabilistic Engineering Mechanics, </i> 103297.</h6></section>
+      <section style="margin-left: 5%; margin-top: 2%; width: 90%; text-align: justify;"> <h6>[4] Pham, T. Q. D., Hoang, T. V., Tran, X. V., Fetni, S., Duchêne, L., Tran, H. S., & Habraken, A. M. (2022). A framework for robust optimization under uncertainty in the additive manufacturing process. <i> Additive Manufacturing, </i> submitted.</h6></section>
+
+
+      <section style="margin-left: 10%; margin-top: 2%;"> <h1 style="font-size: 25px;" >Acknowledgment</h1></section>
+      <section style="margin-left: 5%; margin-top: 2%;"> <h3 style="font-size: 15px; text-transform: none;"> This work was funded by Vingroup and supported by Vingroup Innovation Foundation (VINIF) under project code VINIF.2020.DA15.</h3></section>
+  
+    <iframe id="frame" style="width: 100%; border: 0; height: 0" src="report_v4.html"></iframe>
+
+  <main2>
+    <nav1>
+      <div class="fooder"> 
+        <a >Giới thiệu</a>
+        <a >Chính sách</a>
+        <a >Tin tức</a>
+        <a >Liên hệ</a>
+        <a >Hướng dẫn</a>
+      </div>
+    </nav1>
+  </main2>
+
+  <script src="./config.js"></script>
+  <script src="./script0.js"></script>
+  <script src="./script_plot_v6.js"></script>
+  <script src="./custom.js"></script>
+
+  </body>
+
+</html>
