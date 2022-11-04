@@ -1,29 +1,23 @@
 firebase
-    .database()
-    .ref("Input/")
-    .on("value", function (snap) {
-    //   document.getElementById("v").innerHTML = snap.val().Velocity;
-      document.getElementById("at").innerHTML = snap.val().Ambient_temperature;
-      document.getElementById("lie").innerHTML = snap.val().Laser_input_energy;  
-      document.getElementById("spt").innerHTML = snap.val().Substrate_preheating_temperature;
-    });
+.database()
+.ref("Data/Input/")
+.on("value", function (snap) {
+  document.getElementById("at").innerHTML = snap.val().at;
+  document.getElementById("lie").innerHTML = snap.val().p/100;  
+  document.getElementById("spt").innerHTML = snap.val().spt;
+});
 
   
 firebase
 .database()
-.ref("Input")
+.ref("Data/Input/")
 .on("value", function (snap) {
   
       ( async() => {
       
-        let p = snap.val().Laser_input_energy;  
-        let T_s = snap.val().Ambient_temperature;
-        let T_c = snap.val().Substrate_preheating_temperature;
-
-      //   let p =  document.getElementById("lie").value;
-      //   let T_s =  document.getElementById("at").value;
-      //   let T_c =  document.getElementById("spt").value;
-      //   let chose =  document.getElementById("point").value;
+        let p = snap.val().p/100;  
+        let T_s = snap.val().at;
+        let T_c = snap.val().spt;
 
       if (p>= 1){
           T_s = 285 + (T_s-285-(T_s-285)%4);

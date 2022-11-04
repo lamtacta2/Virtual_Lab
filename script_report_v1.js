@@ -17,7 +17,7 @@ firebase
 
     firebase
     .database()
-    .ref("Input")
+    .ref("Data/Input")
     .on("value", function (snap) {
         if (snap.val().Plot == 1){
           (
