@@ -5,31 +5,24 @@ Plotly.newPlot("myPlot",layout);
 Plotly.newPlot("myPlot1",layout1);  
 
 var id;
-var counter;
 
-counter = 0;
+$(document).ready(function() {
+	$.getJSON('https://jsonip.com?callback=?', function (data) {
+      $('#ip-address').text(data.ip);
+      firebase
+      .database()
+      .ref("ID")
+      .update({ip: data.ip})
 
-
+      id = data.ip;
+    
 firebase
 .database()
-.ref("ID")
-.on("value", function (snap) {
-
-if(counter == 0){
-  id = snap.val().id;
-  counter = 1;
-}
-
-
-
-firebase
-.database()
-.ref(id+"/Input")
+.ref(data.ip)
 .on("value", function (snap) {
 
   (async() => {
 
-    console.log(id);
     console.log(snap.val().control);
         if (snap.val().control == 1){
 
@@ -39,16 +32,37 @@ firebase
             let chose =  snap.val().point;  
             let chose1 =  snap.val().melt;  
 
-            if (p>= 1){
+            if (p >= 1){
               T_s = 285 + (T_s-285-(T_s-285)%4);
               T_c = 556 + (T_c-556-(T_c-556)%4);
-
+              if(T_s >= 309){
+                T_s = 309;
+              }
+              if(T_s <= 285){
+                T_s = 285;
+              }
+              if(T_c >= 588){
+                T_c = 588;
+              }
+              if(T_c <= 556){
+                T_c = 556;
+              }
             } else{
               T_s = 284 + (T_s-284-(T_s-284)%4);
               T_c = 555 + (T_c-555-(T_c-555)%4);
-  
+              if(T_s >= 308){
+                T_s = 308;
+              }
+              if(T_s <= 284){
+                T_s = 284;
+              }
+              if(T_c >= 587){
+                T_c = 587;
+              }
+              if(T_c <= 555){
+                T_c = 555;
+              }
             }
-
 
             
             const data1 = [];
@@ -61,28 +75,20 @@ firebase
   
             let k=2;
           
-            let url1 = 'https://raw.githubusercontent.com/anh231000/Data/main/data1' + p.toString() + T_s.toString() + T_c.toString();
-            let url2 = 'https://raw.githubusercontent.com/anh231000/Data/main/data2' + p.toString() + T_s.toString() + T_c.toString();
-            if (p>= 1){
-              T_s = 285 + (T_s-285-(T_s-285)%4);
-              T_c = 556 + (T_c-556-(T_c-556)%4);
-              if(T_s >= 308){
-                T_s = 308;
-              } 
-              if(T_c >= 587){
-                T_c = 587;
-              } 
+            let url1 = "";
+            let url2 = "";
+            let url3 = "";
+    
+            if(p == 1){
+              url1 = 'https://raw.githubusercontent.com/anh231000/Data/main/data1' + p.toString() +".0"+ T_s.toString() + T_c.toString();
+              url2 = 'https://raw.githubusercontent.com/anh231000/Data/main/data2' + p.toString() +".0"+ T_s.toString() + T_c.toString();  
+              url3 = 'https://raw.githubusercontent.com/anh231000/Data/main/data3' + p.toString() +".0"+ T_s.toString() + T_c.toString();
             } else{
-              T_s = 284 + (T_s-284-(T_s-284)%4);
-              T_c = 555 + (T_c-555-(T_c-555)%4);
-              if(T_s >= 307){
-                T_s = 307;
-              } 
-              if(T_c >= 586){
-                T_c = 586;
-              } 
+              url1 = 'https://raw.githubusercontent.com/anh231000/Data/main/data1' + p.toString() + T_s.toString() + T_c.toString();
+              url2 = 'https://raw.githubusercontent.com/anh231000/Data/main/data2' + p.toString() + T_s.toString() + T_c.toString();
+              url3 = 'https://raw.githubusercontent.com/anh231000/Data/main/data3' + p.toString() + T_s.toString() + T_c.toString();
             }
-            let url3 = 'https://raw.githubusercontent.com/anh231000/Data/main/data3' + p.toString() + T_s.toString() + T_c.toString();
+            
             let workbook1 = XLSX.read(await (await fetch(url1)).arrayBuffer());
             let workbook2 = XLSX.read(await (await fetch(url2)).arrayBuffer());
             let workbook3 = XLSX.read(await (await fetch(url3)).arrayBuffer());
@@ -92,33 +98,64 @@ firebase
             data10[2] = workbook3.Sheets.Sheet1["C2"].v;
             data10[3] = workbook3.Sheets.Sheet1["D2"].v;
   
-            while(data10[0].toString() == "nan"){
-              T_c = T_c + 4;
-              let url3 = 'https://raw.githubusercontent.com/anh231000/Data/main/data3' + p.toString() + T_s.toString() + T_c.toString();
-              let workbook3 = XLSX.read(await (await fetch(url3)).arrayBuffer());
-              data10[0] = workbook3.Sheets.Sheet1["A2"].v;
-            }
-            while(data10[1].toString() == "nan"){
-              T_c = T_c + 4;
-              let url3 = 'https://raw.githubusercontent.com/anh231000/Data/main/data3' + p.toString() + T_s.toString() + T_c.toString();
-              let workbook3 = XLSX.read(await (await fetch(url3)).arrayBuffer());
-              data10[1] = workbook3.Sheets.Sheet1["B2"].v;
-            }
-            while(data10[2].toString() == "nan"){
-              T_c = T_c + 4;
-              let url3 = 'https://raw.githubusercontent.com/anh231000/Data/main/data3' + p.toString() + T_s.toString() + T_c.toString();
-              let workbook3 = XLSX.read(await (await fetch(url3)).arrayBuffer());
-              data10[2] = workbook3.Sheets.Sheet1["C2"].v;
-            }
-            while(data10[3].toString() == "nan"){
-              T_c = T_c + 4;
-              let url3 = 'https://raw.githubusercontent.com/anh231000/Data/main/data3' + p.toString() + T_s.toString() + T_c.toString();
-              let workbook3 = XLSX.read(await (await fetch(url3)).arrayBuffer());
-              data10[3] = workbook3.Sheets.Sheet1["D2"].v;
-            }
+            // while(data10[0].toString() == "nan"){
+            //   T_c = T_c + 4;
+            //   if(p == 1){
+            //     url1 = 'https://raw.githubusercontent.com/anh231000/Data/main/data1' + p.toString() +".0"+ T_s.toString() + T_c.toString();
+            //     url2 = 'https://raw.githubusercontent.com/anh231000/Data/main/data2' + p.toString() +".0"+ T_s.toString() + T_c.toString();  
+            //     url3 = 'https://raw.githubusercontent.com/anh231000/Data/main/data3' + p.toString() +".0"+ T_s.toString() + T_c.toString();
+            //   } else{
+            //     url1 = 'https://raw.githubusercontent.com/anh231000/Data/main/data1' + p.toString() + T_s.toString() + T_c.toString();
+            //     url2 = 'https://raw.githubusercontent.com/anh231000/Data/main/data2' + p.toString() + T_s.toString() + T_c.toString();
+            //     url3 = 'https://raw.githubusercontent.com/anh231000/Data/main/data3' + p.toString() + T_s.toString() + T_c.toString();
+            //   }
+            //   let workbook3 = XLSX.read(await (await fetch(url3)).arrayBuffer());
+            //   data10[0] = workbook3.Sheets.Sheet1["A2"].v;
+            // }
+            // while(data10[1].toString() == "nan"){
+            //   T_c = T_c + 4;
+            //   if(p == 1){
+            //     url1 = 'https://raw.githubusercontent.com/anh231000/Data/main/data1' + p.toString() +".0"+ T_s.toString() + T_c.toString();
+            //     url2 = 'https://raw.githubusercontent.com/anh231000/Data/main/data2' + p.toString() +".0"+ T_s.toString() + T_c.toString();  
+            //     url3 = 'https://raw.githubusercontent.com/anh231000/Data/main/data3' + p.toString() +".0"+ T_s.toString() + T_c.toString();
+            //   } else{
+            //     url1 = 'https://raw.githubusercontent.com/anh231000/Data/main/data1' + p.toString() + T_s.toString() + T_c.toString();
+            //     url2 = 'https://raw.githubusercontent.com/anh231000/Data/main/data2' + p.toString() + T_s.toString() + T_c.toString();
+            //     url3 = 'https://raw.githubusercontent.com/anh231000/Data/main/data3' + p.toString() + T_s.toString() + T_c.toString();
+            //   }
+            //   let workbook3 = XLSX.read(await (await fetch(url3)).arrayBuffer());
+            //   data10[1] = workbook3.Sheets.Sheet1["B2"].v;
+            // }
+
+            // while(data10[2].toString() == "nan"){
+            //   T_c = T_c + 4;
+            //   if(p == 1){
+            //     url1 = 'https://raw.githubusercontent.com/anh231000/Data/main/data1' + p.toString() +".0"+ T_s.toString() + T_c.toString();
+            //     url2 = 'https://raw.githubusercontent.com/anh231000/Data/main/data2' + p.toString() +".0"+ T_s.toString() + T_c.toString();  
+            //     url3 = 'https://raw.githubusercontent.com/anh231000/Data/main/data3' + p.toString() +".0"+ T_s.toString() + T_c.toString();
+            //   } else{
+            //     url1 = 'https://raw.githubusercontent.com/anh231000/Data/main/data1' + p.toString() + T_s.toString() + T_c.toString();
+            //     url2 = 'https://raw.githubusercontent.com/anh231000/Data/main/data2' + p.toString() + T_s.toString() + T_c.toString();
+            //     url3 = 'https://raw.githubusercontent.com/anh231000/Data/main/data3' + p.toString() + T_s.toString() + T_c.toString();
+            //   }
+            //   let workbook3 = XLSX.read(await (await fetch(url3)).arrayBuffer());
+            //   data10[2] = workbook3.Sheets.Sheet1["C2"].v;
+            // }
+            // while(data10[3].toString() == "nan"){
+            //   T_c = T_c + 4;
+            //   if(p == 1){
+            //     url1 = 'https://raw.githubusercontent.com/anh231000/Data/main/data1' + p.toString() +".0"+ T_s.toString() + T_c.toString();
+            //     url2 = 'https://raw.githubusercontent.com/anh231000/Data/main/data2' + p.toString() +".0"+ T_s.toString() + T_c.toString();  
+            //     url3 = 'https://raw.githubusercontent.com/anh231000/Data/main/data3' + p.toString() +".0"+ T_s.toString() + T_c.toString();
+            //   } else{
+            //     url1 = 'https://raw.githubusercontent.com/anh231000/Data/main/data1' + p.toString() + T_s.toString() + T_c.toString();
+            //     url2 = 'https://raw.githubusercontent.com/anh231000/Data/main/data2' + p.toString() + T_s.toString() + T_c.toString();
+            //     url3 = 'https://raw.githubusercontent.com/anh231000/Data/main/data3' + p.toString() + T_s.toString() + T_c.toString();
+            //   }
+            //   let workbook3 = XLSX.read(await (await fetch(url3)).arrayBuffer());
+            //   data10[3] = workbook3.Sheets.Sheet1["D2"].v;
+            // }
   
-
-
            function data_update(k){
             for(let i = 2; i < k; i++){
                 const locale1 = "A"+i;
@@ -178,7 +215,7 @@ firebase
 
             firebase
             .database()
-            .ref(id+"/Input")
+            .ref(id)
             .on("value", function (snap) {
             
               if (snap.val().control == 1){
@@ -201,4 +238,5 @@ firebase
           }
           console.log(id);
      })(); 
-    }) })
+    }) 
+});	});

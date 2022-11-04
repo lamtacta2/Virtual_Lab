@@ -10,7 +10,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <title> Demo </title>
+    <title> Tutorial Virtual Lab </title>
 
     <style>
       * {
@@ -47,17 +47,17 @@
       main2{
         width: 100%;
         height: 100%;
+        margin-left: 1px;
       }
 
       main3{
       width: 100%;
-      height: 50%;
+      height: 15vh;
       display: flex;
-      border-style: solid; border-width: thin;
-      /* justify-content: center;
+      justify-content: center;
       align-items: center;
-      text-align: center; */
-      /* background-image: url("./bga.jpg"); */
+      text-align: center;
+      background-image: url("./bga.jpg");
       }
 
       main4{
@@ -70,13 +70,13 @@
       }
 
       main5{
-        width: 60%;
+        width: 65%;
         height: 100%;
       }
 
       main6{
-        width: 40%;
-        /* height: 100%; */
+        width: 35%;
+        height: 100%;
         justify-content: center;
         align-items: center;
         text-align: center;
@@ -87,21 +87,14 @@
         height: 25%;
       }
 
-      main8{
-      width: 100%;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      }
-
     section h1 {
-      font-size: 30px;
+      font-size: 500%;
       font-weight: 700;
       text-transform: uppercase;
     }
 
     section h2 {
-      font-size: 20px;
+      font-size: 30px;
       text-transform: uppercase;
     }
 
@@ -175,7 +168,7 @@
     }
 
     input_data{
-      /* margin-bottom: 1%; */
+      margin-bottom: 1%;
       margin-top: 1%;
       margin-left: 1%;
       padding-left: 1%;
@@ -194,7 +187,6 @@
       width: 100%;
       height: 100%;
       display: flex;
-      /* background-image: url("./bga.jpg"); */
     }
 
     img{
@@ -234,108 +226,71 @@
       background: #4893c5;
     }
 
+
   .slider {
     justify-content: right;
     align-items: right;
     text-align: right;
     }
 
+    /* .slider:hover {
+    opacity: 1;
+    } */
 
-    div.solid {border-style: solid; border-width: thin;}
-
-/* Style the tab */
-.tab {
-  overflow: hidden;
-  /* border: 1px solid #ccc; */
-  background-color: #f1f1f1;
-  height: 100%;
-}
-
-/* Style the buttons inside the tab */
-.tab button {
-  background-color: inherit;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 10px 16px;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  transition: 0.3s;
-  font-size: 10px;
-}
-
-/* Change background color of buttons on hover */
-.tab button:hover {
-  background-color: #ddd;
-}
-
-/* Create an active/current tablink class */
-.tab button.active {
-  background-color: #ccc;
-}
     </style>
   </head>
 
   <body>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.6.1/d3.min.js" integrity="sha512-MefNfAGJ/pEy89xLOFs3V6pYPs6AmUhXJrRlydI/9wZuGrqxmrdQ80zKHUcyadAcph37teDZcBeS6oMJLPtTqw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.6.1/d3.min.js" integrity="sha512-MefNfAGJ/pEy89xLOFs3V6pYPs6AmUhXJrRlydI/9wZuGrqxmrdQ80zKHUcyadAcph37teDZcBeS6oMJLPtTqw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <logo >
+    <logo>
       <img src="logotdm.png" style="margin-left: 5%; height: 65px;"/>
-    <main8 style="margin-top: 10px;">
+      <img src="logovin_v1.png" style="margin-left: 65%; margin-right: 5%; height: 65px;"/>
+    </logo>
+
+    <main3>
       <section>
         <h1>EDPOMP - Virtual Lab</h1>
         <h2>MÔ PHỎNG QUÁ TRÌNH IN 3D</h2>
       </section>
-    </main8>
-      <img src="logovin_v1.png" style="margin-left: 5%; margin-right: 5%; height: 65px;"/>
-    </logo>
+    </main3>
 
-    <main style="height: 50%; margin-bottom: 0%;">
-      <main5>
-        <div1 id="unity-container" class="unity-desktop">
-          <canvas id="unity-canvas" width= 100% height= 80%></canvas>
-          <div id="unity-loading-bar">
-            <div id="unity-progress-bar-empty">
-              <div id="unity-progress-bar-full"></div>
-            </div>
-          </div>
-          <div id="unity-warning"> </div>
-          <div id="unity-footer">
-            <div id="unity-webgl-logo"></div>
-            <div id="unity-fullscreen-button"></div>
-          </div>
-        </div1>
-      </main5>
+    <main>
+      <main4>
+        <section>         
+              <br><br><br><br>
+              <h4><b>Bước 1:  </b>   Thiết lập thông số máy in.</h4>
+              <br>
+              <h4><b>Bước 2:  </b>   Thiết lập kích thước mẫu in</h4>
+              <br>
+              <h4><b>Bước 3:  </b>  Chọn biểu đồ hiển thị </h4>
+              <br>
+              <h4><b>Bước 4:  </b>   Bấm run để chạy mô phỏng</h4>
+              <br>
+              <h4><b>Bước 5:  </b>   Bấm Print Report để xuất báo cáo</h4>
+              <br>        
 
-      <main6 >
-        <div class="solid" id="myPlot" style="height: 48.5%; margin-left: 1%; margin-top: 1%; margin-right: 1%;"></div>
-        <div class="solid" id="myPlot1" style="height: 48.5%; margin-left: 1%; margin-top: 1%; margin-right: 1%;"></div>
-      </main6>
+              <br>
+              <h4 style="margin-left: 0px;"> Lưu ý 1: Vận tốc = [10, 1000] mm/s. <br><br> </h4>
+              <h4 style="margin-left: 35px;"> Laser power = [0.97, 1.03] kW. </h4><br>
+              <h4 style="margin-left: 35px;"> Ambient temperature = [285, 312] K. </h4><br>
+              <h4 style="margin-left: 35px;"> Substrate preheating temperature = [556, 591] K. </h4>
+              <br>
+
+              <br>
+              <h4 style="margin-left: 0px;"> Lưu ý 2: Chiều dài của đối tượng in = [1, 15] mm. <br><br> </h4>
+              <h4 style="margin-left: 35px;"> Chiều rộng của đối tượng in = [1, 10] mm. </h4><br>
+              <h4 style="margin-left: 35px;"> Chiều cao của đối tượng in = [1, 5] mm. </h4><br>
+              </section>
+     
+        </section>
+      </main4>
+      <img src="2.jpg"  style="width: 60%; height: 100%; " />
+
     </main>
 
 
-  <main2>
-    <nav1>
-        <a >Giới thiệu</a>
-        <a >Chính sách</a>
-        <a >Tin tức</a>
-        <a >Liên hệ</a>
-        <a id="btn-tutorial">Hướng dẫn</a>
-        <a id="btn-print">Print Report</a>
-        <!-- <div3>
-          <button class="button"  id="btn-print">Print Report</button>
-        </div3> -->
-    </nav1>
-  </main2>
-
-
-  <script src="./config.js"></script>
-  <script src="./script1.js"></script>
-  <script src="./script_plot_v1.js"></script>
-  <script src="./custom.js"></script>
-  
   </body>
+
 </html>

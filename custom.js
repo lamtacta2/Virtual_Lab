@@ -5,3 +5,11 @@ document.addEventListener('DOMContentLoaded', function () {
 		wspFrame.print();
 	});
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+	document.querySelector('#btn-tutorial').addEventListener('click', function () {
+		let wspFrame = document.getElementById('frame1').contentWindow;
+		wspFrame.focus();
+		wspFrame.print();
+	});
+});

@@ -1,25 +1,38 @@
-firebase
-.database()
-.ref("Data/Input/")
-.on("value", function (snap) {
-  document.getElementById("at").innerHTML = snap.val().at;
-  document.getElementById("lie").innerHTML = snap.val().p/100;  
-  document.getElementById("spt").innerHTML = snap.val().spt;
-});
+// firebase
+// .database()
+// .ref("Data/Input/")
+// .on("value", function (snap) {
+//   document.getElementById("at").innerHTML = snap.val().at;
+//   document.getElementById("lie").innerHTML = snap.val().p;  
+//   document.getElementById("spt").innerHTML = snap.val().spt;
+// });
 
-  
 firebase
 .database()
-.ref("Data/Input/")
+.ref("ID")
 .on("value", function (snap) {
+
+if(counter == 0){
+  id = snap.val().id - 1;
+  counter = 1;
+}
+
+firebase
+.database()
+.ref(id+"/Input/")
+.on("value", function (snap) {
+
+  document.getElementById("at").innerHTML = snap.val().at;
+  document.getElementById("lie").innerHTML = snap.val().p;  
+  document.getElementById("spt").innerHTML = snap.val().spt;
   
       ( async() => {
       
-        let p = snap.val().p/100;  
+        let p = snap.val().p;  
         let T_s = snap.val().at;
         let T_c = snap.val().spt;
 
-      if (p>= 1){
+      if (p >= 1){
           T_s = 285 + (T_s-285-(T_s-285)%4);
           T_c = 556 + (T_c-556-(T_c-556)%4);
         } else{
@@ -120,4 +133,5 @@ firebase
 
   })();
 });
+})
 
