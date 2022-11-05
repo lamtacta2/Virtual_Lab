@@ -5,7 +5,9 @@ $(document).ready(function() {
       .database()
       .ref("ID")
       .update({ip: data.ip})
-      id = data.ip;
+      let id1 = data.ip.toString();
+      let id = id1.split('.');
+      id = id[0];
 
 firebase
 .database()

@@ -4,7 +4,7 @@ var layout1 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}, title: "Clab N"
 Plotly.newPlot("myPlot",layout);
 Plotly.newPlot("myPlot1",layout1);  
 
-var id;
+// var id1, id;
 
 $(document).ready(function() {
 	$.getJSON('https://jsonip.com?callback=?', function (data) {
@@ -14,8 +14,9 @@ $(document).ready(function() {
       .ref("ID")
       .update({ip: data.ip})
 
-      id = data.ip;
-    
+      let id1 = data.ip.toString();
+      let id = id1.split('.');
+      id = id[0];
 firebase
 .database()
 .ref(data.ip)
