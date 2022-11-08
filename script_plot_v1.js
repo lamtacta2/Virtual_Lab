@@ -8,6 +8,11 @@ Plotly.newPlot("myPlot1",layout1);
 firebase
 .database()
 .ref()
+.update({control: 2, Print: 0, Tutorial: 0})
+
+firebase
+.database()
+.ref()
 .on("value", function (snap) {
 
   (async() => {
@@ -213,16 +218,11 @@ firebase
   
              if (k < 1978){data_update(k);}
 
-             
              Plotly.newPlot("myPlot", data, layout);
              Plotly.newPlot("myPlot1", datax1, layout1);
            
              requestAnimationFrame(update);
            } else if(snap.val().control == 0){
             location.reload();
-           }
-          })}
-          requestAnimationFrame(update);
-          }
-     })(); 
-}) 
+           }})}
+            requestAnimationFrame(update);}})(); }) 

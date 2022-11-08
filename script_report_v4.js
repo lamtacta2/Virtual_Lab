@@ -83,6 +83,69 @@ firebase
         data10[2] = workbook3.Sheets.Sheet1["C2"].v;
         data10[3] = workbook3.Sheets.Sheet1["D2"].v;
 
+            while(data10[0].toString() == "nan"){
+              T_c = T_c + 4;
+              if(p == 1){
+                url1 = 'https://raw.githubusercontent.com/anh231000/Data/main/data1' + p.toString() +".0"+ T_s.toString() + T_c.toString();
+                url2 = 'https://raw.githubusercontent.com/anh231000/Data/main/data2' + p.toString() +".0"+ T_s.toString() + T_c.toString();  
+                url3 = 'https://raw.githubusercontent.com/anh231000/Data/main/data3' + p.toString() +".0"+ T_s.toString() + T_c.toString();
+              } else{
+                url1 = 'https://raw.githubusercontent.com/anh231000/Data/main/data1' + p.toString() + T_s.toString() + T_c.toString();
+                url2 = 'https://raw.githubusercontent.com/anh231000/Data/main/data2' + p.toString() + T_s.toString() + T_c.toString();
+                url3 = 'https://raw.githubusercontent.com/anh231000/Data/main/data3' + p.toString() + T_s.toString() + T_c.toString();
+              }
+              let workbook3 = XLSX.read(await (await fetch(url3)).arrayBuffer());
+              data10[0] = workbook3.Sheets.Sheet1["A2"].v;
+            }
+            while(data10[1].toString() == "nan"){
+              T_c = T_c + 4;
+              if(p == 1){
+                url1 = 'https://raw.githubusercontent.com/anh231000/Data/main/data1' + p.toString() +".0"+ T_s.toString() + T_c.toString();
+                url2 = 'https://raw.githubusercontent.com/anh231000/Data/main/data2' + p.toString() +".0"+ T_s.toString() + T_c.toString();  
+                url3 = 'https://raw.githubusercontent.com/anh231000/Data/main/data3' + p.toString() +".0"+ T_s.toString() + T_c.toString();
+              } else{
+                url1 = 'https://raw.githubusercontent.com/anh231000/Data/main/data1' + p.toString() + T_s.toString() + T_c.toString();
+                url2 = 'https://raw.githubusercontent.com/anh231000/Data/main/data2' + p.toString() + T_s.toString() + T_c.toString();
+                url3 = 'https://raw.githubusercontent.com/anh231000/Data/main/data3' + p.toString() + T_s.toString() + T_c.toString();
+              }
+              let workbook3 = XLSX.read(await (await fetch(url3)).arrayBuffer());
+              data10[1] = workbook3.Sheets.Sheet1["B2"].v;
+            }
+
+            while(data10[2].toString() == "nan"){
+              T_c = T_c + 4;
+              if(p == 1){
+                url1 = 'https://raw.githubusercontent.com/anh231000/Data/main/data1' + p.toString() +".0"+ T_s.toString() + T_c.toString();
+                url2 = 'https://raw.githubusercontent.com/anh231000/Data/main/data2' + p.toString() +".0"+ T_s.toString() + T_c.toString();  
+                url3 = 'https://raw.githubusercontent.com/anh231000/Data/main/data3' + p.toString() +".0"+ T_s.toString() + T_c.toString();
+              } else{
+                url1 = 'https://raw.githubusercontent.com/anh231000/Data/main/data1' + p.toString() + T_s.toString() + T_c.toString();
+                url2 = 'https://raw.githubusercontent.com/anh231000/Data/main/data2' + p.toString() + T_s.toString() + T_c.toString();
+                url3 = 'https://raw.githubusercontent.com/anh231000/Data/main/data3' + p.toString() + T_s.toString() + T_c.toString();
+              }
+              let workbook3 = XLSX.read(await (await fetch(url3)).arrayBuffer());
+              data10[2] = workbook3.Sheets.Sheet1["C2"].v;
+            }
+            while(data10[3].toString() == "nan"){
+              T_c = T_c + 4;
+              if(p == 1){
+                url1 = 'https://raw.githubusercontent.com/anh231000/Data/main/data1' + p.toString() +".0"+ T_s.toString() + T_c.toString();
+                url2 = 'https://raw.githubusercontent.com/anh231000/Data/main/data2' + p.toString() +".0"+ T_s.toString() + T_c.toString();  
+                url3 = 'https://raw.githubusercontent.com/anh231000/Data/main/data3' + p.toString() +".0"+ T_s.toString() + T_c.toString();
+              } else{
+                url1 = 'https://raw.githubusercontent.com/anh231000/Data/main/data1' + p.toString() + T_s.toString() + T_c.toString();
+                url2 = 'https://raw.githubusercontent.com/anh231000/Data/main/data2' + p.toString() + T_s.toString() + T_c.toString();
+                url3 = 'https://raw.githubusercontent.com/anh231000/Data/main/data3' + p.toString() + T_s.toString() + T_c.toString();
+              }
+              let workbook3 = XLSX.read(await (await fetch(url3)).arrayBuffer());
+              data10[3] = workbook3.Sheets.Sheet1["D2"].v;
+            }
+
+            // document.getElementById("p1").innerHTML = data10[0];
+            // document.getElementById("p2").inertHTML = data10[1];
+            // document.getElementById("p3").inertHTML = data10[2];
+            // document.getElementById("p4").inertHTML = data10[3];
+
         for(let i = 1; i < 1978; i++){
             const locale1 = "A"+i;
             const locale2 = "B"+i;
