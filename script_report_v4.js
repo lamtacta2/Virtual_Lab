@@ -1,17 +1,6 @@
-$(document).ready(function() {
-	$.getJSON('https://jsonip.com?callback=?', function (data) {
-      $('#ip-address').text(data.ip);
-      firebase
-      .database()
-      .ref("ID")
-      .update({ip: data.ip})
-      let id1 = data.ip.toString();
-      let id = id1.split('.');
-      id = id[0];
-
 firebase
 .database()
-.ref(data.ip)
+.ref()
 .on("value", function (snap) {
 
   (async() => {
@@ -155,5 +144,3 @@ firebase
 
   }})();
 });
-})})
-

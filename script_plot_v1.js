@@ -4,27 +4,14 @@ var layout1 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}, title: "Clab N"
 Plotly.newPlot("myPlot",layout);
 Plotly.newPlot("myPlot1",layout1);  
 
-// var id1, id;
 
-$(document).ready(function() {
-	$.getJSON('https://jsonip.com?callback=?', function (data) {
-      $('#ip-address').text(data.ip);
-      firebase
-      .database()
-      .ref("ID")
-      .update({ip: data.ip})
-
-      let id1 = data.ip.toString();
-      let id = id1.split('.');
-      id = id[0];
 firebase
 .database()
-.ref(data.ip)
+.ref()
 .on("value", function (snap) {
 
   (async() => {
 
-    console.log(snap.val().control);
         if (snap.val().control == 1){
 
             let p = snap.val().p;  
@@ -216,9 +203,9 @@ firebase
 
             firebase
             .database()
-            .ref(id)
+            .ref()
             .on("value", function (snap) {
-            
+
               if (snap.val().control == 1){
              if (k<1978){
               k = k+1;
@@ -237,7 +224,5 @@ firebase
           })}
           requestAnimationFrame(update);
           }
-          console.log(id);
      })(); 
-    }) 
-});	});
+}) 
