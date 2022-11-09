@@ -191,9 +191,7 @@ firebase
                 }
 
                 data1[i-2] = workbook1.Sheets.Sheet1[locale9].v.slice(1,workbook1.Sheets.Sheet1[locale9].v.length-1);
-                
                 data4[i-2] = workbook2.Sheets.Sheet1[locale8].v;
-                
                 labelsa[i-2] = i-2;   
                 labelsb[i-2] = workbook2.Sheets.Sheet1[locale1].v.slice(1,workbook2.Sheets.Sheet1[locale1].v.length-1);  
             }}
@@ -204,11 +202,6 @@ firebase
 
            function update(){
 
-            firebase
-            .database()
-            .ref()
-            .on("value", function (snap) {
-
              if (k<1978){
               k = k+1;
   
@@ -216,5 +209,5 @@ firebase
              Plotly.newPlot("myPlot", data, layout);
              Plotly.newPlot("myPlot1", datax1, layout1);
              requestAnimationFrame(update);
-           }})}
+           }}
             requestAnimationFrame(update);}})(); }) 

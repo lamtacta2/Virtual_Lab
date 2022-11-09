@@ -144,12 +144,13 @@
   <script src="./config.js"></script>
   <script src="./script1.js"></script>
   <script src="./script_plot_v1.js"></script>
+  
   <script> 
+
     firebase
     .database()
     .ref()
-    .on("value", function (snap) {
-    if(snap.val().control == 0){location.reload();}})
+    .on("value", function(snap){if(snap.val().control == 0){location.reload();}})
 
     firebase
     .database()
