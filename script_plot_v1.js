@@ -4,7 +4,6 @@ var layout1 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}, title: "Clab N"
 Plotly.newPlot("myPlot",layout);
 Plotly.newPlot("myPlot1",layout1);  
 
-
 firebase
 .database()
 .ref()
@@ -57,7 +56,6 @@ firebase
               }
             }
 
-            
             const data1 = [];
             const data2 = [];
             const data3 = [];
@@ -211,18 +209,12 @@ firebase
             .ref()
             .on("value", function (snap) {
 
-              if (snap.val().control == 1){
              if (k<1978){
               k = k+1;
-             }
   
              if (k < 1978){data_update(k);}
-
              Plotly.newPlot("myPlot", data, layout);
              Plotly.newPlot("myPlot1", datax1, layout1);
-           
              requestAnimationFrame(update);
-           } else if(snap.val().control == 0){
-            location.reload();
            }})}
             requestAnimationFrame(update);}})(); }) 
