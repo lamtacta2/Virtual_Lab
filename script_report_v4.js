@@ -1,7 +1,23 @@
+var today = new Date();
+var date = today.getDate() + '/' +(today.getMonth()+1)+'/'+ today.getFullYear();
+var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+var dateTime = time+' '+date;
+
+document.getElementById("Time_S").innerHTML = dateTime;
+
 firebase
 .database()
 .ref()
 .on("value", function (snap) {
+
+  if (snap.val().Print == 1){
+
+    var today1 = new Date();
+    var date1 = today1.getDate() + '/' +(today1.getMonth()+1)+'/'+ today1.getFullYear();
+    var time1 = today1.getHours() + ":" + today1.getMinutes() + ":" + today1.getSeconds();
+    var dateTime1 = time1+' '+date1;
+    document.getElementById("Time_St").innerHTML = dateTime1;
+  }
 
   (async() => {
 

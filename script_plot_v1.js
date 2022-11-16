@@ -161,22 +161,22 @@ firebase
 
                 if(chose == 0){
                   locale8 = "B" + i;
-                  layout = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}, title: "Clab N"};
+                  layout = {xaxis: {title: "t (s)"}, yaxis: {title: "Temperature (K)"}, title: "Temperature evolution at point Clab N"};
                 } else if(chose == 1){
                   locale8 = "C" + i;
-                  layout = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}, title: "Clab 1"};
+                  layout = {xaxis: {title: "t (s)"}, yaxis: {title: "Temperature  (K)"}, title: "Temperature evolution at point Clab 1"};
                 } else if(chose == 2){
                    locale8 = "D" + i;
-                   layout = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}, title: "Clab 2"};
+                   layout = {xaxis: {title: "t (s)"}, yaxis: {title: "Temperature  (K)"}, title: "Temperature evolution at point Clab 2"};
                 } else if(chose == 3){
                   locale8 = "E" + i;
-                  layout = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}, title: "Clab 3"};
+                  layout = {xaxis: {title: "t (s)"}, yaxis: {title: "Temperature  (K)"}, title: "Temperature evolution at point Clab 3"};
                 } else if(chose == 4){
                   locale8 = "D" + i;
-                  layout = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}, title: "Clab 4"};
+                  layout = {xaxis: {title: "t (s)"}, yaxis: {title: "Temperature  (K)"}, title: "Temperature evolution at point Clab 4"};
                 } else{
                   locale8 = "G" + i;
-                  layout = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}, title: "Clab 5"};
+                  layout = {xaxis: {title: "t (s)"}, yaxis: {title: "Temperature  (K)"}, title: "Temperature evolution at point Clab 5"};
                 }
 
                 if(chose1 == 0){
@@ -204,10 +204,11 @@ firebase
 
              if (k<1978){
               k = k+1;
-  
              if (k < 1978){data_update(k);}
              Plotly.newPlot("myPlot", data, layout);
              Plotly.newPlot("myPlot1", datax1, layout1);
+             
              requestAnimationFrame(update);
+
            }}
-            requestAnimationFrame(update);}})(); }) 
+           requestAnimationFrame(update);}})(); }) 

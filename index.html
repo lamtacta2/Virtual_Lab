@@ -114,7 +114,7 @@
     <main8 style="margin-top: 1px;">
       <section>
         <h1>EDPOMP - Virtual Lab</h1>
-        <h2>3D PRINT PROCESS SIMULATED</h2>
+        <h2>ADDITIVE MANUFACTURING DIRECTED ENERGY DEPOSITION (DED)</h2>
       </section>
     </main8>
       <img src="logovin_v1.png" style="margin-left: 5%; margin-right: 5%; height: 40px;"/>
@@ -124,13 +124,14 @@
       
       <main5>
         <div1 id="unity-container" class="unity-desktop">
-          <canvas id="unity-canvas" width= 100% height= 80%></canvas>
+          <canvas id="unity-canvas" width= 100% height= 100%></canvas>
         </div1>
       </main5>
 
       <main6 style="float: right;">
         <div class="solid" id="myPlot" style="height: 5%; max-height: 300px;"></div>
         <div class="solid" id="myPlot1" style="height: 5%; max-height: 300px;"></div>
+        <img src="2.jpg" style=" justify-content: center; align-items: center; text-align: center; width: 100%;">
       </main6>
 
     </main>
@@ -142,7 +143,7 @@
 
 </main>
   <script src="./config.js"></script>
-  <script src="./script1.js"></script>
+  <script src="./script2.js"></script>
   <script src="./script_plot_v1.js"></script>
   
   <script> 
@@ -180,9 +181,9 @@
         .update({Tutorial: 0, control: 2}) 
         
         let wspFrame = document.getElementById('frame1').contentWindow;
-        // wspFrame.open("index_v2.html", "", "width=400, height=500");
-        wspFrame.focus();
-        wspFrame.print();
+        wspFrame.open("index_v2.html", "", "width=800, height=600");
+        // wspFrame.focus();
+        // wspFrame.print();
       }})
     
   </script>
