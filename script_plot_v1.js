@@ -181,13 +181,13 @@ firebase
 
                 if(chose1 == 0){
                   locale9 = "A" + i;
-                  layout1 = { xaxis: {title: "Layout number L"}, yaxis: {title: "Melting pool witdh M<sub>w</sub> [mm]"}, title: "M<sub>w</sub>"};
+                  layout1 = { xaxis: {title: "Layout number L"}, yaxis: {title: "Melting pool witdh M<sub>w</sub> [mm]"}, title: "Evolution of melting size M<sub>w</sub>"};
                 } else if(chose1 == 1){
                   locale9 = "B" + i;
-                  layout1 = { xaxis: {title: "Layout number L"}, yaxis: {title: "Melting pool depth M<sub>d</sub> [mm]"}, title: "M<sub>d</sub>"};
+                  layout1 = { xaxis: {title: "Layout number L"}, yaxis: {title: "Melting pool depth M<sub>d</sub> [mm]"}, title: "Evolution of melting size M<sub>d</sub>"};
                 } else {
                   locale9 = "C" + i;
-                  layout1 = { xaxis: {title: "Layout number L"}, yaxis: {title: "Melting pool area M<sub>a</sub> [mm<sup>2</sup>]"}, title: "M<sub>a</sub>"};
+                  layout1 = { xaxis: {title: "Layout number L"}, yaxis: {title: "Melting pool area M<sub>a</sub> [mm<sup>2</sup>]"}, title: "Evolution of melting size M<sub>a</sub>"};
                 }
 
                 data1[i-2] = workbook1.Sheets.Sheet1[locale9].v.slice(1,workbook1.Sheets.Sheet1[locale9].v.length-1);

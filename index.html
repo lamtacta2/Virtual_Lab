@@ -110,14 +110,14 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <logo>
-      <img src="logotdm.png" style="margin-left: 5%; height: 40px;"/>
-    <main8 style="margin-top: 1px;">
+      <img src="logotdm.png" style="margin-left: 5%; height: 65px;"/>
+    <main8 style="margin-top: 10px;">
       <section>
         <h1>EDPOMP - Virtual Lab</h1>
         <h2>ADDITIVE MANUFACTURING DIRECTED ENERGY DEPOSITION (DED)</h2>
       </section>
     </main8>
-      <img src="logovin_v1.png" style="margin-left: 5%; margin-right: 5%; height: 40px;"/>
+      <img src="logovin_v1.png" style="margin-left: 5%; margin-right: 5%; height: 65px;"/>
     </logo>
 
     <main>
@@ -129,9 +129,10 @@
       </main5>
 
       <main6 style="float: right;">
+        <img src="p1.png" style=" justify-content: center; align-items: center; text-align: center; width: 90%;">
         <div class="solid" id="myPlot" style="height: 5%; max-height: 300px;"></div>
         <div class="solid" id="myPlot1" style="height: 5%; max-height: 300px;"></div>
-        <img src="2.jpg" style=" justify-content: center; align-items: center; text-align: center; width: 100%;">
+        
       </main6>
 
     </main>
@@ -139,7 +140,7 @@
 
   <iframe id="frame" style="width: 100%; border: 0; height: 0" src="report_v5.html"></iframe>
 
-  <iframe id="frame1" style="width: 100%; border: 0; height: 0" src="index_v2.html"></iframe>
+  <iframe id="frame1" style="width: 100%; border: 0; height: 0" src="index_tutorial.html"></iframe>
 
 </main>
   <script src="./config.js"></script>
@@ -181,7 +182,7 @@
         .update({Tutorial: 0, control: 2}) 
         
         let wspFrame = document.getElementById('frame1').contentWindow;
-        wspFrame.open("index_v2.html", "", "width=800, height=600");
+        wspFrame.open("index_tutorial.html", "", "width=900, height=600");
         // wspFrame.focus();
         // wspFrame.print();
       }})
