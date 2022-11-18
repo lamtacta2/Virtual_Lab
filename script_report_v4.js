@@ -26,6 +26,10 @@ firebase
     document.getElementById("at").innerHTML = snap.val().at;
     document.getElementById("lie").innerHTML = snap.val().p;  
     document.getElementById("spt").innerHTML = snap.val().spt;
+
+    document.getElementById("liex").innerHTML = snap.val().p/1000;
+    document.getElementById("atx").innerHTML = snap.val().at;
+    document.getElementById("sptx").innerHTML = snap.val().spt;
       
     let p = snap.val().p;  
     let T_s = snap.val().at;
